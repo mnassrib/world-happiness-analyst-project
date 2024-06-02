@@ -1,7 +1,7 @@
 # Data Analyst Project
 
 ## Introduction
-Ce projet utilise des données du "World Happiness Report" pour analyser et visualiser divers indicateurs de bonheur par pays et par année.
+Ce projet utilise des données du "[World Happiness Report 2024](https://worldhappiness.report/data/)" pour analyser et visualiser divers indicateurs de bonheur par pays et par année.
 
 ## Structure du Projet
 - `data/`: Contient le jeu de données.
@@ -13,6 +13,6 @@ Ce projet utilise des données du "World Happiness Report" pour analyser et visu
 ## Instructions
 
 1. Clonez le dépôt.
-2. Placez le fichier `world-happiness-report.csv` dans le dossier `data/`.
+2. Placez le fichier "[`world-happiness-report-2024.csv`](https://happiness-report.s3.amazonaws.com/2024/DataForTable2.1.xls)" dans le dossier `data/`.
 3. Exécutez `docker-compose up --build` pour lancer tous les services.
 4. Accédez à PgAdmin à l'adresse http://localhost:5050, à l'API Flask à http://localhost:5000/happiness, et à l'application Streamlit à http://localhost:8501.
