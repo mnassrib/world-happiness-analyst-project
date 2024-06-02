@@ -13,6 +13,7 @@ Ce projet utilise des données du "[World Happiness Report 2024](https://worldha
 ## Instructions
 
 1. Clonez le dépôt.
-2. Placez le "[`fichier`](https://happiness-report.s3.amazonaws.com/2024/DataForTable2.1.xls)" après avoir le convertir en csv `world-happiness-report-2024.csv` dans le dossier `data/`.
-3. Exécutez `docker-compose up --build` pour lancer tous les services.
-4. Accédez à PgAdmin à l'adresse http://localhost:5050, à l'API Flask à http://localhost:5000/happiness, et à l'application Streamlit à http://localhost:8501.
+2. Télechargez le fichier "[`DataForTable2.1.xls`](https://happiness-report.s3.amazonaws.com/2024/DataForTable2.1.xls)" en le convertissant en fichier csv. 
+3. Nommez le `world-happiness-report-2024.csv` en le plaçant dans le dossier `data/`.
+4. Exécutez `docker-compose up --build` pour lancer tous les services.
+5. Accédez à PgAdmin à l'adresse http://localhost:5050, à l'API Flask à http://localhost:5000/happiness, et à l'application Streamlit à http://localhost:8501.
