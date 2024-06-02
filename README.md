@@ -9,6 +9,8 @@ Ce projet utilise des données du "[World Happiness Report 2024](https://worldha
 - `visualization/`: Contient l'application Streamlit.
 - `database/`: Contient le script SQL d'initialisation.
 - `docker-compose.yml`: Fichier de configuration pour Docker Compose.
+- `.env` : Fichier stockant les variables d'environnement pour la configuration de la base de données où chaque ligne contient une variable suivie de sa valeur.
+- `README.md` : Ce fichier fournissant des instructions sur la configuration et l'utilisation du projet.
 
 ## Instructions
 
@@ -23,7 +25,7 @@ Ce projet utilise des données du "[World Happiness Report 2024](https://worldha
 
 ---
 
-Le fichier `world-happiness-report-2024.csv` placé dans le dossier `data/` n'est autre que le fichier [`DataForTable2.1.xls`](https://happiness-report.s3.amazonaws.com/2024/DataForTable2.1.xls) converti en csv. 
+Le jeu de données `world-happiness-report-2024.csv` placé dans le dossier `data/` n'est autre que celui de [`DataForTable2.1.xls`](https://happiness-report.s3.amazonaws.com/2024/DataForTable2.1.xls) converti en csv. 
 
 ---
 
