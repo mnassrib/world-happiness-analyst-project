@@ -14,7 +14,7 @@ Ce projet utilise des données du "[World Happiness Report 2024](https://worldha
 
 ## Instructions
 
-1. Clonez le dépôt.
+1. Clonez le dépôt :
 
     ```bash
     git clone https://github.com/mnassrib/world-happiness-analyst-project.git
