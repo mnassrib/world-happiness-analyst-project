@@ -1,20 +1,26 @@
-# Data Analyst Project
+# World Happiness Analyst Project
 
 ## Introduction
 Ce projet utilise des données du "[World Happiness Report 2024](https://worldhappiness.report/data/)" pour analyser et visualiser divers indicateurs de bonheur par pays et par année.
 
 ## Structure du Projet
-- `data/`: Contient le jeu de données.
-- `api/`: Contient l'API Flask.
-- `visualization/`: Contient l'application Streamlit.
-- `database/`: Contient le script SQL d'initialisation.
-- `docker-compose.yml`: Fichier de configuration pour Docker Compose.
-- `.env` : Fichier stockant les variables d'environnement pour la configuration de la base de données où chaque ligne contient une variable suivie de sa valeur.
-- `README.md` : Ce fichier fournissant des instructions sur la configuration et l'utilisation du projet.
+- `data/`: contient le jeu de données.
+- `api/`: contient l'API Flask.
+- `visualization/`: contient l'application Streamlit.
+- `database/`: contient le script SQL d'initialisation.
+- `docker-compose.yml`: fichier de configuration pour Docker Compose.
+- `.env` : stocke toutes les variables d'environnement pour la configuration de la base de données.
+- `README.md` : contient les instructions sur la configuration et l'utilisation du projet.
 
 ## Instructions
 
 1. Clonez le dépôt.
+
+    ```bash
+    git clone https://github.com/mnassrib/world-happiness-analyst-project.git
+    cd world-happiness-analyst-project
+    ```
+
 2. Exécutez `docker-compose up --build` pour lancer tous les services.
 3. Accédez à :
     - PgAdmin à l'adresse http://localhost:5050 
