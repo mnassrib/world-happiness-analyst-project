@@ -28,24 +28,45 @@ with country:
     selected_country = st.selectbox('Select a country:', df['country'].unique())
 
 with variable_y:
-    selected_variable_y = st.selectbox('Select Y-axis variable:', available_columns)
+    # Appliquer replace('_', ' ').title() sur chaque élément de available_columns
+    formatted_columns = [column.replace('_', ' ').title() for column in available_columns]
+    variable_y_label = st.selectbox('Select Y-axis variable:', formatted_columns)
 
 data_country = df[df['country'] == selected_country]
-
-# Replace underscores with spaces in the selected Y-axis variable
-variable_y_label = selected_variable_y.replace('_', ' ').title()
 
 # Créez le graphique en ligne avec Plotly
 fig = px.line(
     data_country, 
     x='year', 
-    y=selected_variable_y, 
+    y=variable_y_label.replace(' ', '_').lower(), 
     title=f'Happiness score explained by {variable_y_label} over year for {selected_country}',
     labels={
         'year': 'Year',
-        selected_variable_y: variable_y_label
+        variable_y_label.replace(' ', '_').lower(): variable_y_label
     }
 )
 
 # Affichez le graphique dans Streamlit
 st.plotly_chart(fig)
+
+st.write("## Compare Countries")
+
+countries = st.multiselect('Select countries:', df['country'].unique())
+variable = st.selectbox('Select variable:', available_columns)
+
+if len(countries) > 0:
+    data_countries = df[df['country'].isin(countries)]
+
+    fig = px.line(
+        data_countries, 
+        x='year', 
+        y=variable, 
+        color='country', 
+        title=f'Comparison of {variable} over the years for selected countries',
+        labels={
+            'year': 'Year',
+            variable: variable.replace('_', ' ').title()
+        }
+    )
+
+    st.plotly_chart(fig)
