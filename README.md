@@ -5,7 +5,7 @@ Ce projet décrit l'orchestration de plusieurs services conteneurisés pour une 
 ## Objectif
 L'objectif est de définir et de gérer une stack de services Docker nécessaires pour une application qui doit inclure une base de données PostgreSQL, une interface d'administration pour PostgreSQL, une API Flask, et une application de visualisation Streamlit. Ces services sont configurés pour fonctionner ensemble de manière coordonnée.
 
-## Structure du Projet
+## Structure du projet
 
 ```
 world-happiness-analyst-project/
