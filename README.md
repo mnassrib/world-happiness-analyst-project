@@ -1,9 +1,32 @@
 # World Happiness Analyst Project
 
-## Introduction
-Ce projet utilise des données du "[World Happiness Report 2024](https://worldhappiness.report/data/)" pour analyser et visualiser divers indicateurs de bonheur par pays et par année.
+Ce projet décrit l'orchestration de plusieurs services conteneurisés pour une application. Il utilise des données du "[World Happiness Report 2024](https://worldhappiness.report/data/)" pour analyser et visualiser divers indicateurs de bonheur par pays et par année.
+
+## Objectif
+L'objectif est de définir et de gérer une stack de services Docker nécessaires pour une application qui doit inclure une base de données PostgreSQL, une interface d'administration pour PostgreSQL, une API Flask, et une application de visualisation Streamlit. Ces services sont configurés pour fonctionner ensemble de manière coordonnée.
 
 ## Structure du Projet
+
+```
+world-happiness-analyst-project/
+├── api/
+│   ├── app.py
+│   ├── Dockerfile
+│   ├── config.py
+│   └── requirements.txt
+├── data/
+│   └── world-happiness-report-2024.csv
+├── database/
+│   └── init.sql
+├── visualization/
+│   ├── app.py
+│   ├── Dockerfile
+│   └── requirements.txt
+├── docker-compose.yml
+├── .env
+└── README.md
+```
+
 - `data/`: contient le jeu de données.
 - `api/`: contient l'API Flask.
 - `visualization/`: contient l'application Streamlit.
@@ -11,6 +34,46 @@ Ce projet utilise des données du "[World Happiness Report 2024](https://worldha
 - `docker-compose.yml`: fichier de configuration pour Docker Compose.
 - `.env` : stocke toutes les variables d'environnement pour la configuration de la base de données.
 - `README.md` : contient les instructions sur la configuration et l'utilisation du projet.
+
+## Structure des services
+
+1. **Service `db` (PostgreSQL)**
+   - **Image**: Utilise l'image `postgres:13`.
+   - **Nom du conteneur**: `postgres_db`.
+   - **Variables d'environnement**: Définit les utilisateurs, mots de passe et nom de la base de données via des variables d'environnement.
+   - **Volumes**: Monte deux fichiers locaux dans le conteneur :
+     - `world-happiness-report-2024.csv` pour les données.
+     - `init.sql` pour initialiser la base de données.
+   - **Ports**: Expose le port `5432` pour accéder à PostgreSQL depuis l'extérieur.
+
+2. **Service `pgadmin` (PgAdmin4)**
+   - **Image**: Utilise l'image `dpage/pgadmin4`.
+   - **Nom du conteneur**: `pgadmin`.
+   - **Variables d'environnement**: Définit l'email et le mot de passe par défaut pour PgAdmin via des variables d'environnement.
+   - **Ports**: Expose le port `5050` pour accéder à PgAdmin via le navigateur.
+   - **Dépendance**: Dépend du service `db`, donc il ne démarre qu'après `db`.
+
+3. **Service `api` (Flask API)**
+   - **Construction**: Utilise le répertoire `./api` pour construire l'image Docker de l'API Flask.
+   - **Nom du conteneur**: `flask_api`.
+   - **Variables d'environnement**: Passe les détails de connexion à la base de données via des variables d'environnement.
+   - **Ports**: Expose le port `5000` pour l'API Flask.
+   - **Dépendance**: Dépend du service `db`, donc il ne démarre qu'après `db`.
+
+4. **Service `visualization` (Streamlit)**
+   - **Construction**: Utilise le répertoire `./visualization` pour construire l'image Docker de l'application Streamlit.
+   - **Nom du conteneur**: `streamlit_app`.
+   - **Ports**: Expose le port `8501` pour l'application Streamlit.
+   - **Dépendance**: Dépend du service `api`, donc il ne démarre qu'après `api`.
+
+En résumé le fichier `docker-compose.yml` configure une application composée de quatre services :
+
+- Un serveur PostgreSQL pour la base de données.
+- PgAdmin pour la gestion de PostgreSQL.
+- Une API Flask pour la logique backend.
+- Une application Streamlit pour la visualisation des données.
+
+Ces services sont orchestrés de manière à démarrer dans l'ordre nécessaire pour garantir que chaque service dépendant des autres est disponible avant de démarrer.
 
 ## Instructions
 
